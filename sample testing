@@ -1,0 +1,70 @@
+---SAMPLE VALIDATION:
+										
+select distinct pp_policynumber,jb_digitalamendmentfee_dlg,jb_cancelledduringcoolingoff_dlg,
+jb_adminfeecancelcoolingoff_dlg  from ext_curation_policy_center_9.gw_pc9_policy_periods
+where pp_policynumber in (8005846277,8004039494,8005942498)
+
+pp_policynumber | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_adminfeecancelcoolingoff_dlg
+----------------+----------------------------+----------------------------------+--------------------------------
+8004039494      |                      19.04 |                                  |                               0
+8004039494      |                      26.88 |                                  |                               0
+8004039494      |                            |                                  |                                
+8004039494      |                      19.04 |                                  |                                
+8005846277      |                            |                                  |                                
+8005846277      |                      19.04 |                                  |                               0
+8005942498      |                            |                                  |                                
+8005942498      |                          0 |                                  |                               0
+
+
+select distinct pp_policynumber,jb_adminfeecancelcoolingoff_dlg,jb_digitalamendmentfee_dlg,
+jb_cancelledduringcoolingoff_dlg,jb_notificationdelaydays_dlg
+from tmp_dap_dw_stg.staging_pc9_policy_periods
+where pp_policynumber in (8005846277,8004039494,8005942498)
+
+pp_policynumber | jb_adminfeecancelcoolingoff_dlg | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_notificationdelaydays_dlg
+----------------+---------------------------------+----------------------------+----------------------------------+-----------------------------
+8004039494      |                               0 |                      26.88 |                                  |                             
+8004039494      |                                 |                            |                                  |                             
+8004039494      |                                 |                      19.04 |                                  |                             
+8004039494      |                               0 |                      19.04 |                                  |                             
+8005846277      |                               0 |                      19.04 |                                  |                             
+8005846277      |                                 |                            |                                  |                             
+8005942498      |                               0 |                          0 |                                  |                             
+8005942498      |                                 |                            |                                  |                             
+
+
+
+select distinct policy_number,admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off,renewal_notification_delays_days
+from tmp_dap_dw_stg.v_policy_period
+where policy_number in (8005846277,8004039494,8005942498)
+
+policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | renewal_notification_delays_days
+--------------+-------------------------------------------+------------------------------------+------------------------------+---------------------------------
+8004039494    |                                         0 |                              26.88 |                              |                                 
+8004039494    |                                           |                                    |                              |                                 
+8005846277    |                                           |                                    |                              |                                 
+8005942498    |                                           |                                    |                              |                                 
+8005942498    |                                         0 |                                  0 |                              |                                 
+
+select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off
+from tmp_dap_dw_stg.v_insured_risk
+where policy_number in (8005846277,8004039494,8005942498)
+
+policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
+--------------+-------------------------------------------+------------------------------------+-----------------------------
+8005846277    |                                           |                                    |                             
+8004039494    |                                           |                                    |                             
+8005942498    |                                         0 |                                  0 |                             
+
+select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off
+from tmp_dap_dw_core.fact_core_policy
+where policy_number in (8005846277,8004039494,8005942498)
+
+policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
+--------------+-------------------------------------------+------------------------------------+-----------------------------
+   8004039494 |                                           |                                    |                             
+   8005846277 |                                           |                                    |                             
+   8005942498 |                                      0.00 |                               0.00 |                             
