@@ -1,0 +1,166 @@
+select max(dap_processed_timestamp) from ext_curation_policy_center_9.gw_pc9_policy_periods----2026-09-09 11:12:47
+
+select 
+count(jb_adminfeecancelcoolingoff_dlg) as jb_adminfeecancelcoolingoff_dlg_cnt,
+count(jb_digitalamendmentfee_dlg) as jb_digitalamendmentfee_dlg_cnt,
+count(jb_cancelledduringcoolingoff_dlg) as jb_cancelledduringcoolingoff_dlg_cnt
+from ext_curation_policy_center_9.gw_pc9_policy_periods
+where dap_processed_timestamp='2026-09-09 11:12:47' ----jb_notificationdelaydays_dlg yet to be added in curation
+
+jb_adminfeecancelcoolingoff_dlg_cnt | jb_digitalamendmentfee_dlg_cnt | jb_cancelledduringcoolingoff_dlg_cnt
+------------------------------------+--------------------------------+-------------------------------------
+                             465081 |                         509882 |                                 5246
+
+select distinct jb_adminfeecancelcoolingoff_dlg,jb_digitalamendmentfee_dlg,
+jb_cancelledduringcoolingoff_dlg,jb_notificationdelaydays_dlg,count(*)
+from tmp_dap_dw_stg.staging_pc9_policy_periods
+group by jb_adminfeecancelcoolingoff_dlg,jb_digitalamendmentfee_dlg,
+jb_cancelledduringcoolingoff_dlg,jb_notificationdelaydays_dlg
+
+jb_adminfeecancelcoolingoff_dlg | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_notificationdelaydays_dlg | count    
+--------------------------------+----------------------------+----------------------------------+------------------------------+----------
+                                |                            |                                  |                              | 139997815
+                              0 |                      19.04 |                                  |                              |    263362
+                              0 |                          0 |                                  |                              |    192486
+                                |                      19.04 |                                  |                              |     35676
+                                |                          0 |                                  |                              |      7600
+                              0 |                          0 | 0                                |                              |      2634
+                              0 |                      19.04 | 0                                |                              |      2612
+                              0 |                         17 |                                  |                              |      2011
+                              0 |                      26.88 |                                  |                              |      1935
+                                |                      26.88 |                                  |                              |       988
+                                |                      13.44 |                                  |                              |       253
+                                |                         24 |                                  |                              |       123
+                                |                         17 |                                  |                              |       102
+                                |                      10.08 |                                  |                              |        37
+                              0 |                      10.08 |                                  |                              |        29
+                                |                         12 |                                  |                              |        22
+                              0 |                         24 |                                  |                              |        12
+
+
+
+select distinct count(jb_adminfeecancelcoolingoff_dlg) as jb_adminfeecancelcoolingoff_dlg_cnt,
+count(jb_digitalamendmentfee_dlg) as jb_digitalamendmentfee_dlg_cnt,
+count(jb_cancelledduringcoolingoff_dlg) as jb_cancelledduringcoolingoff_dlg_cnt,
+count(jb_notificationdelaydays_dlg) as jb_notificationdelaydays_dlg_cnt
+from tmp_dap_dw_stg.staging_pc9_policy_periods
+
+
+jb_adminfeecancelcoolingoff_dlg_cnt | jb_digitalamendmentfee_dlg_cnt | jb_cancelledduringcoolingoff_dlg_cnt | jb_notificationdelaydays_dlg_cnt
+------------------------------------+--------------------------------+--------------------------------------+---------------------------------
+                             465081 |                         509882 |                                 5246 |                                0
+
+select distinct admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off,renewal_notification_delays_days,count(*)
+from tmp_dap_dw_stg.v_policy_period
+group by admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off,renewal_notification_delays_days
+
+admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | renewal_notification_delays_days | count  
+------------------------------------------+------------------------------------+------------------------------+----------------------------------+--------
+                                          |                                    |                              |                                  | 1876672
+                                        0 |                              19.04 |                              |                                  |   26374
+                                        0 |                                  0 |                              |                                  |   15704
+                                          |                              26.88 |                              |                                  |     897
+                                          |                              19.04 |                              |                                  |     493
+                                          |                                  0 |                              |                                  |     381
+                                        0 |                                  0 | 0                            |                                  |     341
+                                        0 |                              26.88 |                              |                                  |     297
+                                        0 |                              19.04 | 0                            |                                  |     288
+                                          |                              13.44 |                              |                                  |     247
+                                        0 |                                 17 |                              |                                  |     178
+                                          |                                 24 |                              |                                  |     122
+                                          |                                 12 |                              |                                  |      22
+                                          |                                 17 |                              |                                  |       6
+                                        0 |                              10.08 |                              |                                  |       3
+                                        0 |                                 24 |                              |                                  |       2
+
+
+select count(admin_fee_cancellation_during_cooling_off) as admin_fee_cancellation_during_cooling_off_cnt,
+count(admin_fee_digital_amendment_amount) as admin_fee_digital_amendment_amount_cnt,
+count(cancelled_during_cooling_off) as cancelled_during_cooling_off_cnt,
+count(renewal_notification_delays_days) as renewal_notification_delays_days_cnt
+from tmp_dap_dw_stg.v_policy_period
+
+admin_fee_cancellation_during_cooling_off_cnt | admin_fee_digital_amendment_amount_cnt | cancelled_during_cooling_off_cnt | renewal_notification_delays_days_cnt
+----------------------------------------------+----------------------------------------+----------------------------------+-------------------------------------
+                                        43187 |                                  45355 |                              629 |                                    0
+
+
+select distinct admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off,count(*)
+from tmp_dap_dw_stg.v_insured_risk
+group by admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off
+
+admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | count 
+------------------------------------------+------------------------------------+------------------------------+-------
+                                          |                                    |                              | 773009
+                                        0 |                              19.04 |                              |   9063
+                                        0 |                                  0 |                              |   4699
+                                          |                              26.88 |                              |    897
+                                        0 |                                  0 | 0                            |    266
+                                          |                              13.44 |                              |    250
+                                          |                                  0 |                              |    212
+                                        0 |                              19.04 | 0                            |    204
+                                          |                              19.04 |                              |    179
+                                          |                                 24 |                              |    122
+                                        0 |                                 17 |                              |     99
+                                          |                                 12 |                              |     22
+                                          |                                 17 |                              |      3
+
+
+
+select distinct count(admin_fee_cancellation_during_cooling_off) as admin_fee_cancellation_during_cooling_off_cnt,
+count(admin_fee_digital_amendment_amount) as admin_fee_digital_amendment_amount_cnt,
+count(cancelled_during_cooling_off) as cancelled_during_cooling_off_cnt
+from tmp_dap_dw_stg.v_insured_risk
+
+
+admin_fee_cancellation_during_cooling_off_cnt | admin_fee_digital_amendment_amount_cnt | cancelled_during_cooling_off_cnt
+----------------------------------------------+----------------------------------------+---------------------------------
+                                        14331 |                                  16016 |                              470
+										
+										
+										
+select distinct admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off,count(*)
+from tmp_dap_dw_core.fact_core_policy
+group by admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
+cancelled_during_cooling_off
+
+admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | count  
+------------------------------------------+------------------------------------+------------------------------+--------
+                                          |                                    |                              | 9327265
+                                     0.00 |                              19.04 |                              |    9063
+                                     0.00 |                               0.00 |                              |    4699
+                                          |                              26.88 |                              |     897
+                                     0.00 |                               0.00 | 0                            |     266
+                                          |                              13.44 |                              |     250
+                                          |                               0.00 |                              |     212
+                                     0.00 |                              19.04 | 0                            |     204
+                                          |                              19.04 |                              |     179
+                                          |                              24.00 |                              |     122
+                                     0.00 |                              17.00 |                              |      99
+                                          |                              12.00 |                              |      22
+                                          |                              17.00 |                              |       3
+
+
+select distinct count(admin_fee_cancellation_during_cooling_off) as admin_fee_cancellation_during_cooling_off_cnt,
+count(admin_fee_digital_amendment_amount) as admin_fee_digital_amendment_amount_cnt,
+count(cancelled_during_cooling_off) as cancelled_during_cooling_off_cnt
+from tmp_dap_dw_core.fact_core_policy
+
+
+admin_fee_cancellation_during_cooling_off_cnt | admin_fee_digital_amendment_amount_cnt | cancelled_during_cooling_off_cnt
+----------------------------------------------+----------------------------------------+---------------------------------
+                                        14331 |                                  16016 |                              470
+										
+
+
+
+
+
+
+
+
