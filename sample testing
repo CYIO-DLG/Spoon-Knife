@@ -1,158 +1,79 @@
----SAMPLE VALIDATION:
-										
-select distinct pp_policynumber,jb_digitalamendmentfee_dlg,jb_cancelledduringcoolingoff_dlg,
-jb_adminfeecancelcoolingoff_dlg  from ext_curation_policy_center_9.gw_pc9_policy_periods
-where pp_policynumber in (8005846277,8004039494,8005942498)
-
-pp_policynumber | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_adminfeecancelcoolingoff_dlg
-----------------+----------------------------+----------------------------------+--------------------------------
-8004039494      |                      19.04 |                                  |                               0
-8004039494      |                      26.88 |                                  |                               0
-8004039494      |                            |                                  |                                
-8004039494      |                      19.04 |                                  |                                
-8005846277      |                            |                                  |                                
-8005846277      |                      19.04 |                                  |                               0
-8005942498      |                            |                                  |                                
-8005942498      |                          0 |                                  |                               0
-
-
-select distinct pp_policynumber,jb_adminfeecancelcoolingoff_dlg,jb_digitalamendmentfee_dlg,
-jb_cancelledduringcoolingoff_dlg,jb_notificationdelaydays_dlg
-from tmp_dap_dw_stg.staging_pc9_policy_periods
-where pp_policynumber in (8005846277,8004039494,8005942498)
-
-pp_policynumber | jb_adminfeecancelcoolingoff_dlg | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_notificationdelaydays_dlg
-----------------+---------------------------------+----------------------------+----------------------------------+-----------------------------
-8004039494      |                               0 |                      26.88 |                                  |                             
-8004039494      |                                 |                            |                                  |                             
-8004039494      |                                 |                      19.04 |                                  |                             
-8004039494      |                               0 |                      19.04 |                                  |                             
-8005846277      |                               0 |                      19.04 |                                  |                             
-8005846277      |                                 |                            |                                  |                             
-8005942498      |                               0 |                          0 |                                  |                             
-8005942498      |                                 |                            |                                  |                             
-
-
-
-select distinct policy_number,admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off,renewal_notification_delays_days
-from tmp_dap_dw_stg.v_policy_period
-where policy_number in (8005846277,8004039494,8005942498)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | renewal_notification_delays_days
---------------+-------------------------------------------+------------------------------------+------------------------------+---------------------------------
-8004039494    |                                         0 |                              26.88 |                              |                                 
-8004039494    |                                           |                                    |                              |                                 
-8005846277    |                                           |                                    |                              |                                 
-8005942498    |                                           |                                    |                              |                                 
-8005942498    |                                         0 |                                  0 |                              |                                 
-
-select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off
-from tmp_dap_dw_stg.v_insured_risk
-where policy_number in (8005846277,8004039494,8005942498)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
---------------+-------------------------------------------+------------------------------------+-----------------------------
-8005846277    |                                           |                                    |                             
-8004039494    |                                           |                                    |                             
-8005942498    |                                         0 |                                  0 |                             
-
-select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off
-from tmp_dap_dw_core.fact_core_policy
-where policy_number in (8005846277,8004039494,8005942498)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
---------------+-------------------------------------------+------------------------------------+-----------------------------
-   8004039494 |                                           |                                    |                             
-   8005846277 |                                           |                                    |                             
-   8005942498 |                                      0.00 |                               0.00 |                             
-
-
-
----------------------------------------------------------------------------------------------------------------------------------------------
-
----SAMPLE VALIDATION:
-										
-select distinct pp_policynumber,jb_digitalamendmentfee_dlg,jb_cancelledduringcoolingoff_dlg,
-jb_adminfeecancelcoolingoff_dlg  from ext_curation_policy_center_9.gw_pc9_policy_periods
-where pp_policynumber in (8000277494,8005941433,8006034279)
-
-pp_policynumber | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_adminfeecancelcoolingoff_dlg
-----------------+----------------------------+----------------------------------+--------------------------------
-8000277494      |                            |                                  |                                
-8000277494      |                      26.88 |                                  |                                
-8005941433      |                            |                                  |                                
-8005941433      |                      19.04 | 0                                |                               0
-8005941433      |                      19.04 |                                  |                               0
-8006034279      |                          0 | 0                                |                               0
-8006034279      |                            |                                  |                                
-8006034279      |                          0 |                                  |                               0
-
-
-
-select distinct pp_policynumber,jb_adminfeecancelcoolingoff_dlg,jb_digitalamendmentfee_dlg,
-jb_cancelledduringcoolingoff_dlg,jb_notificationdelaydays_dlg
-from tmp_dap_dw_stg.staging_pc9_policy_periods
-where pp_policynumber in (8000277494,8005941433,8006034279)
-
-pp_policynumber | jb_adminfeecancelcoolingoff_dlg | jb_digitalamendmentfee_dlg | jb_cancelledduringcoolingoff_dlg | jb_notificationdelaydays_dlg
-----------------+---------------------------------+----------------------------+----------------------------------+-----------------------------
-8000277494      |                                 |                            |                                  |                             
-8000277494      |                                 |                      26.88 |                                  |                             
-8005941433      |                               0 |                      19.04 | 0                                |                             
-8005941433      |                                 |                            |                                  |                             
-8005941433      |                               0 |                      19.04 |                                  |                             
-8006034279      |                                 |                            |                                  |                             
-8006034279      |                               0 |                          0 |                                  |                             
-8006034279      |                               0 |                          0 | 0                                |                             
-
-
-
-select distinct policy_number,admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off,renewal_notification_delays_days
-from tmp_dap_dw_stg.v_policy_period
-where policy_number in (8000277494,8005941433,8006034279)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off | renewal_notification_delays_days
---------------+-------------------------------------------+------------------------------------+------------------------------+---------------------------------
-8000277494    |                                           |                                    |                              |                                 
-8000277494    |                                           |                              26.88 |                              |                                 
-8005941433    |                                         0 |                              19.04 | 0                            |                                 
-8005941433    |                                         0 |                              19.04 |                              |                                 
-8006034279    |                                         0 |                                  0 |                              |                                 
-8006034279    |                                         0 |                                  0 | 0                            |                                 
-                            
-
-select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off
-from tmp_dap_dw_stg.v_insured_risk
-where policy_number in (8000277494,8005941433,8006034279)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
---------------+-------------------------------------------+------------------------------------+-----------------------------
-8000277494    |                                           |                                    |                             
-8000277494    |                                           |                              26.88 |                             
-8005941433    |                                         0 |                              19.04 | 0                           
-8005941433    |                                         0 |                              19.04 |                             
-8006034279    |                                         0 |                                  0 |                             
-8006034279    |                                         0 |                                  0 | 0                           
-             
-              
-
-select distinct policy_number, admin_fee_cancellation_during_cooling_off,admin_fee_digital_amendment_amount,
-cancelled_during_cooling_off
-from tmp_dap_dw_core.fact_core_policy
-where policy_number in (8000277494,8005941433,8006034279)
-
-policy_number | admin_fee_cancellation_during_cooling_off | admin_fee_digital_amendment_amount | cancelled_during_cooling_off
---------------+-------------------------------------------+------------------------------------+-----------------------------
-   8000277494 |                                           |                              26.88 |                             
-   8000277494 |                                           |                                    |                             
-   8005941433 |                                      0.00 |                              19.04 | 0                           
-   8005941433 |                                      0.00 |                              19.04 |                             
-   8006034279 |                                      0.00 |                               0.00 |                             
-   8006034279 |                                      0.00 |                               0.00 | 0                           
-
-
+CREATE EXTERNAL TABLE tmp_dap_motor_discovery.data_egress_dual_cover_pii (
+    registration_number character varying(100),
+    policy_number_a bigint,
+    policy_number_b bigint,
+    contract_start_date_a date,
+    contract_start_date_b date,
+    ph_first_name_a character varying(16383),
+    ph_first_name_b character varying(16383),
+    ph_last_name_a character varying(16383),
+    ph_last_name_b character varying(16383),
+    ph_dob_a date,
+    ph_dob_b date,
+    ph_address_a character varying(65535),
+    ph_address_b character varying(65535),
+    ph_postcode_a character varying(16383),
+    ph_postcode_b character varying(16383),
+    ph_cellphone_a character varying(16383),
+    ph_cellphone_b character varying(16383),
+    match_level_id integer,
+    match_level character varying(33),
+    cover_level_a character varying(100),
+    cover_level_b character varying(100),
+    ad_voluntary_excess_a integer,
+    ad_voluntary_excess_b integer,
+    motor_legal_cover_flag_a integer,
+    motor_legal_cover_flag_b integer,
+    guaranteed_hire_car_plus_flag_a integer,
+    guaranteed_hire_car_plus_flag_b integer,
+    linked_rescue_flag_a integer,
+    linked_rescue_flag_b integer,
+    linked_rescue_european_add_on_flag_a integer,
+    linked_rescue_european_add_on_flag_b integer,
+    foreign_use_flag_a integer,
+    foreign_use_flag_b integer,
+    add_ons_count_a integer,
+    add_ons_count_b integer,
+    ad1_first_name_a character varying(16383),
+    ad1_first_name_b character varying(16383),
+    ad1_last_name_a character varying(16383),
+    ad1_last_name_b character varying(16383),
+    ad1_dob_a date,
+    ad1_dob_b date,
+    ad2_first_name_a character varying(16383),
+    ad2_first_name_b character varying(16383),
+    ad2_last_name_a character varying(16383),
+    ad2_last_name_b character varying(16383),
+    ad2_dob_a date,
+    ad2_dob_b date,
+    ad3_first_name_a character varying(16383),
+    ad3_first_name_b character varying(16383),
+    ad3_last_name_a character varying(16383),
+    ad3_last_name_b character varying(16383),
+    ad3_dob_a date,
+    ad3_dob_b date,
+    ad4_first_name_a character varying(16383),
+    ad4_first_name_b character varying(16383),
+    ad4_last_name_a character varying(16383),
+    ad4_last_name_b character varying(16383),
+    ad4_dob_a date,
+    ad4_dob_b date,
+    ad5_first_name_a character varying(16383),
+    ad5_first_name_b character varying(16383),
+    ad5_last_name_a character varying(16383),
+    ad5_last_name_b character varying(16383),
+    ad5_dob_a date,
+    ad5_dob_b date,
+    brand_description_a character varying(1200),
+    brand_description_b character varying(1200),
+    vehicle_make_model_a character varying(301),
+    vehicle_make_model_b character varying(301),
+    claims_made_in_term_a bigint,
+    claims_made_in_term_b bigint,
+    refresh_date date,
+    match_percentage numeric(26,4))
+ROW FORMAT SERDE ''
+STORED AS INPUTFORMAT ''
+OUTPUTFORMAT ''
+LOCATION 'local:dap_lsm_motor_db';
+-----------------------------------------------------------------
